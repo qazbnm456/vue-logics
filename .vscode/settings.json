@@ -1,0 +1,16 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "[typescript]": {
+        "editor.formatOnSave": false,
+    },
+    "eslint.autoFixOnSave": true,
+    "eslint.validate": [
+      "javascript",
+      { "language": "typescript", "autoFix": true }
+    ],
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "typescript.tsdk": "node_modules/typescript/lib"
+}
