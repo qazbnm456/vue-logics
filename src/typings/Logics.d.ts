@@ -8,7 +8,7 @@ declare namespace Logics {
 
   export namespace Flowy {
     export interface FlowyElementConstructor {
-      new(canvas: HTMLDivElement, onGrab: ((block: HTMLDivElement) => any) | undefined, onRelease: (() => any) | undefined, onSnap: ((block: HTMLDivElement, first?: boolean, parent?: HTMLDivElement) => any) | undefined, spacingX: number, spacingY: number);
+      new(canvas: HTMLDivElement, onGrab: ((block: HTMLDivElement) => any) | undefined, onRelease: (() => any) | undefined, onSnap: ((block: HTMLDivElement, first?: boolean, parent?: Logics.Block.BlockInterface) => any) | undefined, spacingX: number, spacingY: number);
     }
     export interface FlowyElementInterface {
       id: number;
@@ -16,12 +16,12 @@ declare namespace Logics {
       window: Window;
       onGrab: ((block: HTMLDivElement) => any) | undefined;
       onRelease: (() => any) | undefined;
-      onSnap: ((block: HTMLDivElement, first?: boolean, parent?: HTMLDivElement | undefined) => any) | undefined;
+      onSnap: ((block: HTMLDivElement, first?: boolean, parent?: Logics.Block.BlockInterface | undefined) => any) | undefined;
       import: ((data: any) => void) | undefined;
       output: (() => any) | undefined;
       deleteBlocks: (() => void) | undefined;
 
-      engine: (document: Document, canvas: Canvas.CanvasInterface, onGrab: ((block: HTMLDivElement) => any) | undefined, onRelease: (() => any) | undefined, onSnap: ((block: HTMLDivElement, first?: boolean, parent?: HTMLDivElement | undefined) => any) | undefined) => void;
+      engine: (document: Document, canvas: Canvas.CanvasInterface, onGrab: ((block: HTMLDivElement) => any) | undefined, onRelease: (() => any) | undefined, onSnap: ((block: HTMLDivElement, first?: boolean, parent?: Logics.Block.BlockInterface | undefined) => any) | undefined) => void;
     }
   }
 

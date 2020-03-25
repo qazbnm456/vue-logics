@@ -9,7 +9,7 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
   onGrab: ((block: HTMLDivElement) => any) | undefined;
   onRelease: (() => any) | undefined;
   // tslint:disable-next-line:max-line-length
-  onSnap: ((block: HTMLDivElement, first?: boolean, parent?: HTMLDivElement | undefined) => any) | undefined;
+  onSnap: ((block: HTMLDivElement, first?: boolean, parent?: Logics.Block.BlockInterface | undefined) => any) | undefined;
   import: ((data: any) => void) | undefined;
   output: (() => any) | undefined;
   deleteBlocks: (() => void) | undefined;
@@ -154,7 +154,7 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
     document.addEventListener('mouseup', endDrag, false);
     document.addEventListener('touchend', endDrag, false);
 
-    function snap(block) {
+    function snap(block: Logics.Block.BlockInterface) {
       const draggedElement = canvas.draggedElement!;
       if (!canvas.isRearranging) {
         // TODO: replace with `canvas.drop()`?
@@ -311,7 +311,7 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
             return tmpZWidth + maxWidth();
           }, 0);
 
-          loopBlock = canvas.blocks.find(({ id }) => (id === loopBlock.parent));
+          loopBlock = canvas.blocks.find(({ id }) => (id === loopBlock.parent))!;
         } while (loopBlock.parent !== -1);
 
         loopBlock.childWidth = totalWidth;
