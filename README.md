@@ -1,6 +1,6 @@
-# Vue-Logics
+# Vue-Logics (*WIP*)
 
-> Vue-Logics is a Vue Plugin to let you build your logics.
+> Vue-Logics is a Vue Plugin to let you build your logics based on [Flowy.js](https://github.com/alyssaxuu/flowy).
 
 <p align="center">
   <img alt="Vue-Logics" src="https://i.imgur.com/QraxynT.png" width="700px">
