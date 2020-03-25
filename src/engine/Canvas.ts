@@ -86,17 +86,13 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     this.replaceBlocks(blockarr);
   }
 
-  pageX = (element: HTMLElement) => {
-    return element.offsetParent
-      ? element.offsetLeft + this.pageX(element.offsetParent as HTMLElement)
-      : element.offsetLeft;
-  }
+  pageX = element => ((element.offsetParent)
+    ? element.offsetLeft + this.pageX(element.offsetParent as HTMLElement)
+    : element.offsetLeft);
 
-  pageY = (element: HTMLElement) => {
-    return element.offsetParent
-      ? element.offsetTop + this.pageY(element.offsetParent as HTMLElement)
-      : element.offsetTop;
-  }
+  pageY = element => ((element.offsetParent)
+    ? element.offsetTop + this.pageY(element.offsetParent as HTMLElement)
+    : element.offsetTop);
 
   grab = (grabbedNode: HTMLDivElement) => {
     const { mouseX, mouseY } = this.state;
@@ -134,7 +130,7 @@ class Canvas implements Logics.Canvas.CanvasInterface {
   }
 
   toggleDragger = (start, { remove = false } = {}) => {
-    const draggedElement = this.draggedElement;
+    const { draggedElement } = this;
 
     if (draggedElement && this.grabbedNode) {
       if (start) {
@@ -152,9 +148,9 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     }
   }
 
-  nextBlockID = () => (this.blocks.length === 0)
+  nextBlockID = () => ((this.blocks.length === 0)
     ? 0
-    : Math.max(...this.blocks.map(({ id }) => id)) + 1
+    : Math.max(...this.blocks.map(({ id }) => id)) + 1);
 
   addBlockForElement = (blockElement, { parent = -1, childWidth = 0 } = {}) => {
     const { scrollLeft, scrollTop } = this.position();
@@ -174,7 +170,7 @@ class Canvas implements Logics.Canvas.CanvasInterface {
 
   findBlock = (id, { tree = false } = {}) => ((tree)
     ? this.draggedTree
-    : this.blocks).find(block => (block.id === id))
+    : this.blocks).find(block => (block.id === id));
 
   replaceBlocks = blocks => this.blocks.splice(0, this.blocks.length, ...blocks);
 
@@ -196,12 +192,10 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     }
   }
 
-  findChildBlocks = (id) => {
-    return this.blocks.filter(({ parent }) => (parent === id));
-  }
+  findChildBlocks = id => this.blocks.filter(({ parent }) => (parent === id));
 
   output = () => {
-    const blocks = this.blocks;
+    const { blocks } = this;
 
     if (blocks.length === 0) {
       return null;
@@ -211,7 +205,7 @@ class Canvas implements Logics.Canvas.CanvasInterface {
       html: this.html(),
       blockarr: blocks.slice(),
       blocks: blocks.map(({ id, parent }) => {
-        const node = this.findBlockElement(id)!.node;
+        const { node } = this.findBlockElement(id)!;
 
         return {
           id,
@@ -322,10 +316,10 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     const zoneY = top + scrollTop;
 
     return (
-      zoneX >= x - width / 2 - this.spacingX &&
-      zoneX <= x + width / 2 + this.spacingX &&
-      zoneY >= y - height / 2 &&
-      zoneY <= y + height
+      zoneX >= x - width / 2 - this.spacingX
+      && zoneX <= x + width / 2 + this.spacingX
+      && zoneY >= y - height / 2
+      && zoneY <= y + height
     );
   }
 
@@ -398,9 +392,7 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     }
   }
 
-  setState = (state) => {
-    return Object.assign(this.state, state);
-  }
+  setState = state => Object.assign(this.state, state);
 
   getState = key => this.state[key];
 

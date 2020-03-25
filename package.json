@@ -13,8 +13,7 @@
     "build:iife": "rollup --config build/rollup.iife.config.js --format iife --file dist/logics.min.js",
     "dev": "cross-env NODE_ENV=development rollup --config build/rollup.config.js --format umd --file dist/logics.umd.js --watch",
     "fmt": "tsfmt -r --baseDir src/",
-    "lint": "yarn run fmt && tslint -p src/tsconfig.json -c tslint.json src/**/*.ts",
-    "lint:fix": "yarn run fmt && tslint -p src/tsconfig.json -c tslint.json --fix src/**/*.ts"
+    "lint": "yarn run fmt && eslint -c .eslintrc.json 'src/**/*.{js,ts}'"
   },
   "author": {
     "name": "Boik Su",

@@ -4,7 +4,7 @@ class ArrowElement implements Logics.ArrowElement.ArrowElementInterface {
   window: Window;
   document: HTMLDivElement;
 
-  static find = (blockElement) => {
+  static find = (blockElement): Logics.ArrowElement.ArrowElementInterface | null => {
     const { document } = blockElement.window;
     const node = document.querySelector(`.arrowid[value='${blockElement.id}']`);
 
@@ -18,7 +18,7 @@ class ArrowElement implements Logics.ArrowElement.ArrowElementInterface {
     this.document = blockElement.document;
   }
 
-  html = (html) => {
+  html = (html): string => {
     if (html !== undefined) {
       this.node.innerHTML = html;
     }
@@ -26,7 +26,7 @@ class ArrowElement implements Logics.ArrowElement.ArrowElementInterface {
     return this.node.innerHTML;
   }
 
-  position = () => {
+  position = (): Logics.ArrowElement.Position => {
     const { top, left } = this.node.getBoundingClientRect();
 
     return {
@@ -35,9 +35,7 @@ class ArrowElement implements Logics.ArrowElement.ArrowElementInterface {
     };
   }
 
-  styles = (styles) => {
-    return Object.assign(this.node.style, styles);
-  }
+  styles = styles => Object.assign(this.node.style, styles);
 
   remove = () => {
     this.node.remove();

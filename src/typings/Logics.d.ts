@@ -1,4 +1,4 @@
-/* tslint:disable:max-line-length */
+/* eslint-disable max-len */
 
 declare namespace Logics {
   export interface Options extends Object {

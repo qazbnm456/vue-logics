@@ -1,4 +1,4 @@
-/* tslint:disable */
+/* eslint-disable */
 
 import isPlainObject from 'is-plain-object';
 import VueLogics from './VueLogics.vue';

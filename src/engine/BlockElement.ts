@@ -36,13 +36,9 @@ class BlockElement implements Logics.BlockElement.BlockElementInterface {
     };
   }
 
-  styles = (styles) => {
-    return Object.assign(this.node.style, styles);
-  }
+  styles = styles => Object.assign(this.node.style, styles);
 
-  arrow = () => {
-    return ArrowElement.find(this);
-  }
+  arrow = () => ArrowElement.find(this);
 }
 
 export default BlockElement;
