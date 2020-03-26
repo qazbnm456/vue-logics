@@ -81,8 +81,10 @@ export default class Sidebar extends Vue {
   }
 
   mounted() {
-    this.flowy = new Flowy(
-      document.getElementById('canvas'), this.onGrab, this.onRelease, this.onSnap, 40, 40);
+    if ((window as any).VueLogicsTest !== true) {
+      this.flowy = new Flowy(
+        document.getElementById('canvas'), this.onGrab, this.onRelease, this.onSnap, 40, 40);
+    }
   }
 }
 </script>
