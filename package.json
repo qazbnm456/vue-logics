@@ -15,7 +15,7 @@
     "fmt": "tsfmt -r --baseDir src/",
     "lint": "yarn run fmt && eslint -c .eslintrc.json 'src/**/*.{js,ts}'",
     "check-types": "yarn run tsc -p src/tsconfig.json",
-    "test": "yarn run ava"
+    "test": "yarn run check-types && yarn run ava"
   },
   "author": {
     "name": "Boik Su",
