@@ -1,5 +1,5 @@
 <template>
-<div style="width: 100vw; height: 100vh;">
+<div>
   <sidebar id="sidebar" ref="sidebar"></sidebar>
   <div id="canvas"></div>
 </div>
@@ -20,9 +20,10 @@ export default class VueLogics extends Vue {
 }
 </script>
 
-<style lang="less">
+<style scoped>
 @import './css/flowy.min.css';
 @import './css/styles.css';
+@import '../node_modules/element-ui/lib/theme-chalk/index.css';
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
@@ -36,17 +37,16 @@ body {
 }
 
 #canvas {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 500px;
   top: 0;
   left: 0;
   z-index: 0;
   overflow: auto;
+}
 
-  .blockelem {
-    z-index: 9998;
-  }
+#canvas > .blockelem {
+  z-index: 9998;
 }
 
 div.blockelem.dragging {

@@ -89,5 +89,5 @@ export default class Sidebar extends Vue {
 }
 </script>
 
-<style lang="less">
+<style>
 </style>

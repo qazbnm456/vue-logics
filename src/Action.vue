@@ -1,4 +1,4 @@
-<template lang="pug">
+<template>
 <el-row class="handle">
   <el-col>
     <div class="blockelem create-flowy">
@@ -35,7 +35,7 @@ export default class Action extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .handle {
   z-index: 9999;
 }

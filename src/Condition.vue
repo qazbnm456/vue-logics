@@ -35,7 +35,7 @@ export default class Condition extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .handle {
   z-index: 9999;
 }
