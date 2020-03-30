@@ -8,4 +8,3 @@ thumbs.db
 !.gitkeep
 .nyc_output/
 coverage/
-.vuepress/
