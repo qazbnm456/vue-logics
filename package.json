@@ -15,7 +15,9 @@
     "fmt": "tsfmt -r --baseDir src/",
     "lint": "yarn run fmt && eslint -c .eslintrc.json 'src/**/*.{js,ts}'",
     "check-types": "yarn run tsc -p src/tsconfig.json",
-    "test": "yarn run check-types && yarn run nyc ava"
+    "test": "yarn run check-types && yarn run nyc ava",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "author": {
     "name": "Boik Su",
@@ -73,6 +75,7 @@
     "tree-kill": "^1.2.2",
     "typescript": "^3.8.3",
     "typescript-formatter": "^7.2.2",
+    "vuepress": "^1.4.0",
     "vue-property-decorator": "^8.4.1",
     "vue-template-compiler": "^2.6.11"
   },
