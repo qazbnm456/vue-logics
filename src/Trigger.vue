@@ -35,8 +35,5 @@ export default class Trigger extends Vue {
 }
 </script>
 
-<style scoped>
-.handle {
-  z-index: 9999;
-}
+<style>
 </style>

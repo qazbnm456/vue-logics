@@ -156,12 +156,6 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
           const blockElement = canvas.findBlockElement(block.id)!;
           const arrowElement = blockElement.arrow();
 
-          // blockElement.styles({
-          //   top: parentBlock.y + canvas.spacingY + 'px'
-          // })
-
-          // parentBlock.y = parentBlock.y + canvas.spacingY
-
           if (block.childWidth > block.width) {
             blockElement.styles({
               left: `${
@@ -186,10 +180,10 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
           const arrowX = x - parentX + 20;
           const arrowY = y - height / 2 - (parentY + parentHeight / 2);
 
-          arrowElement.styles({ top: parentY + parentHeight / 2 - top });
+          arrowElement.styles({ top: `${parentY + parentHeight / 2 - top}px` });
 
           if (arrowX < 0) {
-            arrowElement.styles({ left: x - 5 - left });
+            arrowElement.styles({ left: `${x - 5 - left}px` });
             arrowElement.html(`
               <input type="hidden" class="arrowid" value="${block.id}">
               <svg preserveaspectratio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -207,7 +201,7 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
               </svg>
             `);
           } else {
-            arrowElement.styles({ left: parentX - 20 - left });
+            arrowElement.styles({ left: `${parentX - 20 - left}px` });
             arrowElement.html(`
               <input type="hidden" class="arrowid" value="${block.id}">
               <svg preserveaspectratio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -243,7 +237,7 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
         canvas.blocks.forEach(({ id, x, width, parent }) => {
           const blockElement = canvas.findBlockElement(id)!;
 
-          blockElement.styles({ left: x - width / 2 - currentOffsetLeft + 20 });
+          blockElement.styles({ left: `${x - width / 2 - currentOffsetLeft + 20}px` });
 
           if (parent === -1) {
             return;
@@ -254,9 +248,9 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
           const arrowX = x - parentX;
 
           arrowElement.styles({
-            left: (arrowX < 0)
+            left: `${(arrowX < 0)
               ? x - currentOffsetLeft + 20 - 5
-              : parentX - 20 - currentOffsetLeft + 20,
+              : parentX - 20 - currentOffsetLeft + 20}px`,
           });
         });
 
@@ -302,15 +296,15 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
         }
 
         if (childElement) {
-          childElement.styles({ left });
+          childElement.styles({ left: `${left}px` });
         }
       });
 
       const { top, left, scrollTop, scrollLeft } = canvas.position();
 
       canvas.draggedElement!.styles({
-        left: block.x - totalWidth / 2 + totalRemove - left + scrollLeft,
-        top: block.y + block.height / 2 + canvas.spacingY - top,
+        left: `${block.x - totalWidth / 2 + totalRemove - left + scrollLeft}px`,
+        top: `${block.y + block.height / 2 + canvas.spacingY - top}px`,
       });
 
       if (canvas.isRearranging) {
@@ -334,12 +328,12 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
           const arrowParent = arrowElement.node;
 
           blockElement.styles({
-            left: blockElement.position().left - left + scrollLeft,
-            top: blockElement.position().top - top + scrollTop,
+            left: `${blockElement.position().left - left + scrollLeft}px`,
+            top: `${blockElement.position().top - top + scrollTop}px`,
           });
           arrowElement.styles({
-            left: arrowElement.position().left - left + scrollLeft + 20,
-            top: arrowElement.position().top - top + scrollTop,
+            left: `${arrowElement.position().left - left + scrollLeft + 20}px`,
+            top: `${arrowElement.position().top - top + scrollTop}px`,
           });
 
           canvas.appendChild(blockParent, arrowParent);
@@ -384,7 +378,7 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
             </svg>
           </div>
         `);
-        draggedElement.arrow().styles({ left: x - 5 - left + scrollLeft });
+        draggedElement.arrow().styles({ left: `${x - 5 - left + scrollLeft}px` });
       } else {
         canvas.appendHtml(`
           <div class="arrowblock">
@@ -404,9 +398,9 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
             </svg>
           </div>
         `);
-        draggedElement.arrow().styles({ left: block.x - 20 - left + scrollLeft });
+        draggedElement.arrow().styles({ left: `${block.x - 20 - left + scrollLeft}px` });
       }
-      draggedElement.arrow().styles({ top: block.y + block.height / 2 });
+      draggedElement.arrow().styles({ top: `${block.y + block.height / 2}px` });
 
       if (block.parent !== -1) {
         let loopBlock = block;
@@ -531,7 +525,7 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
           const blockElement = canvas.findBlockElement(id)!;
           const arrowElement = blockElement.arrow();
 
-          blockElement.styles({ left: x - width / 2 - previousOffsetLeft - 20 });
+          blockElement.styles({ left: `${x - width / 2 - previousOffsetLeft - 20}px` });
           block.x = blockElement.position().left + width / 2;
 
           if (parent === -1) {
@@ -542,9 +536,9 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
           const arrowX = x - parentX;
 
           arrowElement.styles({
-            left: (arrowX < 0)
+            left: `${(arrowX < 0)
               ? x - 5 - canvas.position().left
-              : parentX - 20 - canvas.position().left,
+              : parentX - 20 - canvas.position().left}px`,
           });
         });
 

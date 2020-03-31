@@ -86,13 +86,13 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     this.replaceBlocks(blockarr);
   }
 
-  pageX = element => ((element.offsetParent)
-    ? element.offsetLeft + this.pageX(element.offsetParent as HTMLElement)
-    : element.offsetLeft);
+  pageX = element => ((element.id !== 'logics-sidebar')
+  ? element.offsetLeft + this.pageX(element.offsetParent as HTMLElement)
+  : element.offsetLeft);
 
-  pageY = element => ((element.offsetParent)
-    ? element.offsetTop + this.pageY(element.offsetParent as HTMLElement)
-    : element.offsetTop);
+  pageY = element => ((element.id !== 'logics-sidebar')
+  ? element.offsetTop + this.pageY(element.offsetParent as HTMLElement)
+  : element.offsetTop);
 
   grab = (grabbedNode: HTMLDivElement) => {
     const { mouseX, mouseY } = this.state;
@@ -102,7 +102,7 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     draggedNode.classList.remove('create-flowy');
     draggedNode.innerHTML += `<input type='hidden' name='blockid' class='blockid' value='${id}'>`;
 
-    this.document.body.appendChild(draggedNode);
+    this.document.getElementById('logics-temp-area')!.appendChild(draggedNode);
 
     this.grabbedNode = grabbedNode;
 
@@ -115,8 +115,8 @@ class Canvas implements Logics.Canvas.CanvasInterface {
       });
 
       this.draggedElement!.styles({
-        left: mouseX - dragX,
-        top: mouseY - dragY,
+        left: `${mouseX - dragX}px`,
+        top: `${mouseY - dragY}px`,
       });
     }
 
@@ -374,8 +374,8 @@ class Canvas implements Logics.Canvas.CanvasInterface {
 
     if (mouseX && mouseY && dragX && dragY) {
       this.draggedElement!.styles({
-        left: mouseX - dragX,
-        top: mouseY - dragY,
+        left: `${mouseX - dragX}px`,
+        top: `${mouseY - dragY}px`,
       });
     }
   }
@@ -386,8 +386,8 @@ class Canvas implements Logics.Canvas.CanvasInterface {
 
     if (mouseX && mouseY && dragX && dragY) {
       this.draggedElement!.styles({
-        left: mouseX - dragX - left + scrollLeft,
-        top: mouseY - dragY - top + scrollTop,
+        left: `${mouseX - dragX - left + scrollLeft}px`,
+        top: `${mouseY - dragY - top + scrollTop}px`,
       });
     }
   }

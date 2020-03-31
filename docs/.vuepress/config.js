@@ -3,6 +3,11 @@ module.exports = {
   plugins: [
     [
       'vuepress-plugin-typescript',
+      {
+        tsLoaderOptions: {
+          transpileOnly: true,
+        },
+      },
     ],
   ],
 };

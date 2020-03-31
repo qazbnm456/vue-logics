@@ -66,16 +66,6 @@ import Trigger from './Trigger.vue';
 export default class Sidebar extends Vue {
   flowy: Logics.Flowy.FlowyElementInterface;
 
-  onGrab() {
-    document.querySelectorAll('.handle').forEach((el) => {
-      (el as HTMLDivElement).style.zIndex = '9997';
-    });
-  }
-  onRelease() {
-    document.querySelectorAll('.handle').forEach((el) => {
-      (el as HTMLDivElement).style.zIndex = '9999';
-    });
-  }
   onSnap(block, first, parent) {
     return true;
   }
@@ -83,7 +73,7 @@ export default class Sidebar extends Vue {
   mounted() {
     if ((window as any).VueLogicsTest !== true) {
       this.flowy = new Flowy(
-        document.getElementById('canvas'), this.onGrab, this.onRelease, this.onSnap, 40, 40);
+        document.getElementById('logics-canvas'), undefined, undefined, this.onSnap, 40, 40);
     }
   }
 }
