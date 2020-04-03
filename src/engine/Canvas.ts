@@ -237,7 +237,7 @@ class Canvas implements Logics.Canvas.CanvasInterface {
 
     // Move child block DOM nodes into dragged block node for easier dragging
     do {
-      const foundids = layer.map(({ id }) => id);
+      const foundIds = layer.map(({ id }) => id);
 
       layer.forEach((block) => {
         this.draggedTree.push(block);
@@ -246,12 +246,13 @@ class Canvas implements Logics.Canvas.CanvasInterface {
         const arrowElement = blockElement.arrow()!;
 
         blockElement.styles({
-          left: blockElement.position().left - left,
-          top: blockElement.position().top - top,
+          left: `${blockElement.position().left - left}px`,
+          top: `${blockElement.position().top - top}px`,
         });
+        console.log(blockElement);
         arrowElement.styles({
-          left: arrowElement.position().left - left,
-          top: arrowElement.position().top - top,
+          left: `${arrowElement.position().left - left}px`,
+          top: `${arrowElement.position().top - top}px`,
         });
 
         draggedElement.node.appendChild(blockElement.node);
@@ -261,7 +262,7 @@ class Canvas implements Logics.Canvas.CanvasInterface {
       allBlocks.push(...layer);
 
       // finds next children
-      layer = this.blocks.filter(({ parent }) => foundids.includes(parent));
+      layer = this.blocks.filter(({ parent }) => foundIds.includes(parent));
     } while (layer.length);
 
     childBlocks.forEach(block => this.removeBlock(block));
@@ -281,13 +282,13 @@ class Canvas implements Logics.Canvas.CanvasInterface {
       const { left, top, scrollLeft, scrollTop } = this.position();
 
       blockElement.styles({
-        left: blockElement.position().left - left + scrollLeft,
-        top: blockElement.position().top - top + scrollTop,
+        left: `${blockElement.position().left - left + scrollLeft}px`,
+        top: `${blockElement.position().top - top + scrollTop}px`,
       });
 
       arrowElement.styles({
-        left: arrowElement.position().left - left + scrollLeft,
-        top: arrowElement.position().top - (top + scrollTop),
+        left: `${arrowElement.position().left - left + scrollLeft}px`,
+        top: `${arrowElement.position().top - (top + scrollTop)}px`,
       });
 
       this.appendChild(blockElement.node, arrowElement.node);
@@ -334,8 +335,8 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     const { top, left, scrollTop, scrollLeft } = this.position();
 
     draggedElement.styles({
-      top: draggedElement.position().top - top + scrollTop,
-      left: draggedElement.position().left - left + scrollLeft,
+      top: `${draggedElement.position().top - top + scrollTop}px`,
+      left: `${draggedElement.position().left - left + scrollLeft}px`,
     });
 
     this.appendChild(draggedElement.node);

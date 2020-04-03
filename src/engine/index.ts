@@ -429,7 +429,9 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
       }
 
       rearrangeMe();
+      console.log('snap -> rearrangeMe');
       checkOffset();
+      console.log('snap -> checkOffset');
     }
 
     function endDrag(event) {
@@ -556,6 +558,7 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
 
         if (canvas.blocks.length > 1) {
           rearrangeMe();
+          console.log('moveBlock -> rearrangeMe');
         }
 
         if (canvas.isLastEvent) {
@@ -567,8 +570,10 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
 
       if (canvas.isDragging) {
         canvas.updateDragPosition();
+        console.log('moveBlock -> updateDragPosition');
       } else if (canvas.isRearranging) {
         canvas.updateRearrangePosition();
+        console.log('moveBlock -> updateRearrangePosition');
       }
 
       if (!canvas.isDragging && !canvas.isRearranging) {
