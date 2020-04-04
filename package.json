@@ -1,7 +1,7 @@
 {
   "name": "vue-logics",
   "productName": "Vue-Logics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue-Logics is a Vue Plugin to let you build your logics",
   "main": "dist/logics.umd.js",
   "module": "dist/logics.esm.js",

@@ -32,7 +32,7 @@ export default {
       modulesOnly: true
     }),
     commonjs(),
-    css({ output: 'dist/styles.css' }),
+    css({ output: 'theme/default/logics.css' }),
     vue({
       css: false,
       style: {
