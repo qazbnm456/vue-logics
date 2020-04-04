@@ -15,13 +15,13 @@ The preferred way to use Vue Logics is to install via your favorite JavaScript p
 ## NPM
 
 ```sh
-npm install @qazbnm456/vue-logics
+npm install vue-logics
 ```
 
 ## Yarn
 
 ```sh
-yarn add @qazbnm456/vue-logics
+yarn add vue-logics
 ```
 
 ## Direct download
@@ -29,6 +29,9 @@ yarn add @qazbnm456/vue-logics
 Alternatively, if your project doesn't have a build process, you can download the repository and manually link to the minified version:
 
 ```html
+<!-- import the styles -->
+<link rel="stylesheet" href="/vue-logics/dist/styles.css">
+<!-- import the library -->
 <script src="/vue-logics/dist/logics.min.js"></script>
 ```
 
@@ -40,7 +43,7 @@ Due to DOM limitations, when mounting Vue Logics in DOM templates (outside of si
 
 ## CDN
 
-Similar to a direct download, you can load Vue Logics directly off of a CDN like [JSDeliver](https://www.jsdelivr.com/package/npm/@qazbnm456/vue-logics?path=dist).
+Similar to a direct download, you can load Vue Logics directly off of a CDN like [JSDeliver](https://www.jsdelivr.com/package/npm/vue-logics?path=dist).
 
 ## Add to Vue
 
@@ -48,7 +51,10 @@ Once Vue Logics has been downloaded you need to install it with Vue.
 
 ```js
 import Vue from 'vue';
-import VueLogics from '@qazbnm456/vue-logics';
+// import the library
+import VueLogics from 'vue-logics';
+// import the styles
+import '~/node_modules/vue-logics/dist/styles.css';
 
 Vue.use(VueLogics);
 ```
@@ -57,7 +63,7 @@ Vue.use(VueLogics);
 When loading Vue Logics from the minified version or using a commonJS module environment (think `require()`) it may be necessary to use `VueLogics.default` when registering with Vue:
 
 ```js
-const VueLogics = require('@qazbnm456/vue-logics');
+const VueLogics = require('vue-logics');
 
 Vue.use(VueLogics.default);
 ```
