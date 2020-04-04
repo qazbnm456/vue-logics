@@ -1,13 +1,13 @@
 {
   "name": "vue-logics",
   "productName": "Vue-Logics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Vue-Logics is a Vue Plugin to let you build your logics",
   "main": "dist/logics.umd.js",
   "module": "dist/logics.esm.js",
   "unpkg": "dist/logics.min.js",
   "scripts": {
-    "build": "yarn run build:esm & yarn run build:umd & yarn run build:iife",
+    "build": "yarn run build:esm & yarn run build:umd & yarn run build:iife && cssnano < theme/default/logics.css > theme/default/logics.min.css",
     "build:esm": "rollup --config build/rollup.config.js --format es --file dist/logics.esm.js",
     "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/logics.umd.js",
     "build:iife": "rollup --config build/rollup.iife.config.js --format iife --file dist/logics.min.js",
@@ -54,6 +54,7 @@
     "chai": "^4.2.0",
     "core-js": "2.6.9",
     "cross-env": "^7.0.2",
+    "cssnano-cli": "^1.0.5",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-friendly-formatter": "^4.0.1",

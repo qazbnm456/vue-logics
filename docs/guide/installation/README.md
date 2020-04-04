@@ -30,7 +30,7 @@ Alternatively, if your project doesn't have a build process, you can download th
 
 ```html
 <!-- import the styles -->
-<link rel="stylesheet" href="/vue-logics/theme/default/logics.css">
+<link rel="stylesheet" href="/vue-logics/theme/default/logics.min.css">
 <!-- import the library -->
 <script src="/vue-logics/dist/logics.min.js"></script>
 ```
@@ -54,7 +54,7 @@ import Vue from 'vue';
 // import the library
 import VueLogics from 'vue-logics';
 // import the styles
-import '~/node_modules/vue-logics/theme/default/logics.css';
+import '~/node_modules/vue-logics/theme/default/logics.min.css';
 
 Vue.use(VueLogics);
 ```

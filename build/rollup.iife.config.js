@@ -37,7 +37,7 @@ export default {
       }
     }),
     internal(['element-ui', 'is-plain-object', 'vue', 'vue-class-component']),
-    css({ output: 'dist/styles.css' }),
+    css({ output: 'theme/default/logics.css' }),
     vue({
       css: false,
       style: {
