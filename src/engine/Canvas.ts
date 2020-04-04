@@ -249,7 +249,6 @@ class Canvas implements Logics.Canvas.CanvasInterface {
           left: `${blockElement.position().left - left}px`,
           top: `${blockElement.position().top - top}px`,
         });
-        console.log(blockElement);
         arrowElement.styles({
           left: `${arrowElement.position().left - left}px`,
           top: `${arrowElement.position().top - top}px`,
@@ -375,8 +374,12 @@ class Canvas implements Logics.Canvas.CanvasInterface {
 
     if (mouseX && mouseY && dragX && dragY) {
       this.draggedElement!.styles({
-        left: `${mouseX - dragX}px`,
-        top: `${mouseY - dragY}px`,
+        left: ((mouseX < dragX)
+          ? '0px'
+          :`${mouseX - dragX}px`),
+        top: ((mouseY < dragY)
+          ? '0px'
+          :`${mouseY - dragY}px`),
       });
     }
   }
@@ -387,8 +390,12 @@ class Canvas implements Logics.Canvas.CanvasInterface {
 
     if (mouseX && mouseY && dragX && dragY) {
       this.draggedElement!.styles({
-        left: `${mouseX - dragX - left + scrollLeft}px`,
-        top: `${mouseY - dragY - top + scrollTop}px`,
+        left: ((mouseX - dragX - left + scrollLeft < 0)
+          ? '0px'
+          :`${mouseX - dragX - left + scrollLeft}px`),
+        top: ((mouseY - dragY - top + scrollTop < 0)
+          ? '0px'
+          :`${mouseY - dragY - top + scrollTop}px`),
       });
     }
   }
