@@ -48,8 +48,6 @@ import { Component, Vue } from 'vue-property-decorator';
 
 import { Tabs, TabPane } from 'element-ui';
 
-import Flowy from './engine/index';
-
 import Action from './Action.vue';
 import Condition from './Condition.vue';
 import Trigger from './Trigger.vue';
@@ -64,18 +62,6 @@ import Trigger from './Trigger.vue';
   },
 })
 export default class Sidebar extends Vue {
-  flowy: Logics.Flowy.FlowyElementInterface;
-
-  onSnap(block, first, parent) {
-    return true;
-  }
-
-  mounted() {
-    if ((window as any).VueLogicsTest !== true) {
-      this.flowy = new Flowy(
-        document.getElementById('logics-canvas'), undefined, undefined, this.onSnap, 40, 40);
-    }
-  }
 }
 </script>
 

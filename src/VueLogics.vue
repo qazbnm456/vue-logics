@@ -2,7 +2,7 @@
 <div class="vue-logics" :style="{ width: this.width }">
   <sidebar id="logics-sidebar" ref="sidebar"></sidebar>
   <div id="logics-container" :style="{ height: this.height }">
-    <div id="logics-canvas" :style="{ height: this.height }"></div>
+    <div id="logics-canvas" ref="canvas" :style="{ height: this.height }"></div>
     <div id="logics-temp-area"></div>
   </div>
 </div>
@@ -10,6 +10,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+
+import Flowy from './engine/index';
 
 import Sidebar from './Sidebar.vue';
 
@@ -22,6 +24,18 @@ import Sidebar from './Sidebar.vue';
 export default class VueLogics extends Vue {
   @Prop({ default: '740px' }) readonly width!: string
   @Prop({ default: '400px' }) readonly height!: string
+
+  flowy: Logics.Flowy.FlowyElementInterface;
+
+  onSnap(block, first, parent) {
+    return true;
+  }
+
+  mounted() {
+    if ((window as any).VueLogicsTest !== true) {
+      this.flowy = new Flowy(this.$refs.canvas, undefined, undefined, this.onSnap, 40, 40);
+    }
+  }
 }
 </script>
 
