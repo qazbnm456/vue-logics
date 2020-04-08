@@ -7,4 +7,4 @@ thumbs.db
 !.gitkeep
 .nyc_output/
 coverage/
-docs/.vuepress/public/*
+public/

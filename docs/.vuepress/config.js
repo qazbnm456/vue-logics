@@ -43,5 +43,6 @@ module.exports = {
     docsDir: 'docs',
     search: true,
   },
-  dest: 'docs/.vuepress/public',
+  dest: 'public',
+  base: '/vue-logics/',
 };
