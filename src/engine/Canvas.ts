@@ -1,5 +1,6 @@
 import BlockElement from './BlockElement';
 import Block from './Block';
+import * as Logics from '../types/vue-logics';
 
 class Canvas implements Logics.Canvas.CanvasInterface {
   window: Window;

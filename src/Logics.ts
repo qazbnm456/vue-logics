@@ -2,14 +2,15 @@
 
 import isPlainObject from 'is-plain-object';
 import VueLogics from './VueLogics.vue';
+import { Flowy, Options } from '../src/types/vue-logics';
 
 /**
  * The base logics library.
  */
 class Logics {
   defaults: any;
-  flowy: Logics.Flowy.FlowyElementInterface;
-  options: Logics.Options | undefined;
+  flowy: Flowy.FlowyElementInterface;
+  options: Options | undefined;
 
   /**
    * Instantiate our base options.

@@ -12,6 +12,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import Flowy from './engine/index';
+import * as Logics from '../src/types/vue-logics';
 
 import Sidebar from './Sidebar.vue';
 

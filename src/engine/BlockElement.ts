@@ -1,4 +1,5 @@
 import ArrowElement from './ArrowElement';
+import * as Logics from '../types/vue-logics';
 
 class BlockElement implements Logics.BlockElement.BlockElementInterface {
   id: number;

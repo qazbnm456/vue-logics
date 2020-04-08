@@ -1,6 +1,7 @@
 /* global window, document */
 
 import Canvas from './Canvas';
+import * as Logics from '../types/vue-logics';
 
 let loaded = false;
 

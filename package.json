@@ -1,11 +1,12 @@
 {
   "name": "vue-logics",
   "productName": "Vue-Logics",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vue-Logics is a Vue Plugin to let you build your logics",
   "main": "dist/logics.umd.js",
   "module": "dist/logics.esm.js",
   "unpkg": "dist/logics.min.js",
+  "types": "src/types/vue-logics.d.ts",
   "scripts": {
     "build": "yarn run build:esm & yarn run build:umd & yarn run build:iife && cssnano < theme/default/logics.css > theme/default/logics.min.css",
     "build:esm": "rollup --config build/rollup.config.js --format es --file dist/logics.esm.js",

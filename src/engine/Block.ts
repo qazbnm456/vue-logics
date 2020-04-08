@@ -1,3 +1,5 @@
+import * as Logics from '../types/vue-logics';
+
 class Block implements Logics.Block.BlockInterface {
   parent: number;
   childWidth: number;

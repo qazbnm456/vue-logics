@@ -1,3 +1,5 @@
+import * as Logics from '../types/vue-logics';
+
 class ArrowElement implements Logics.ArrowElement.ArrowElementInterface {
   blockElement: Logics.BlockElement.BlockElementInterface;
   node: HTMLDivElement;
