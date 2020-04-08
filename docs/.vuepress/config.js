@@ -43,5 +43,5 @@ module.exports = {
     docsDir: 'docs',
     search: true,
   },
-  dest: 'public',
+  dest: 'docs/.vuepress/public',
 };

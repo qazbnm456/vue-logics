@@ -1,6 +1,5 @@
 .DS_Store
 yarn-error.log
-dist/*
 node_modules/
 npm-debug.log
 npm-debug.log.*
@@ -8,3 +7,4 @@ thumbs.db
 !.gitkeep
 .nyc_output/
 coverage/
+docs/.vuepress/public/
