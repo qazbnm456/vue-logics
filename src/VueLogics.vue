@@ -35,6 +35,10 @@ export default class VueLogics extends Vue {
   mounted() {
     if ((window as any).VueLogicsTest !== true) {
       this.flowy = new Flowy(this.$refs.canvas, undefined, undefined, this.onSnap, 40, 40);
+      // export some needed functions
+      (this as any).$logics.import = this.flowy.import;
+      (this as any).$logics.output = this.flowy.output;
+      (this as any).$logics.deleteBlocks = this.flowy.deleteBlocks;
     }
   }
 }

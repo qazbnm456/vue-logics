@@ -41,7 +41,10 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
       currentOffsetLeft: 0,
       previousOffsetLeft: 0,
     });
-    this.import = canvas.import;
+    this.import = ({ html, blockarr }) => {
+      canvas.import({ html, blockarr });
+      rearrangeMe();
+    }
     this.output = canvas.output;
     this.deleteBlocks = canvas.reset;
 

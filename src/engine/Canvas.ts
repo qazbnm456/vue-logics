@@ -195,6 +195,8 @@ class Canvas implements Logics.Canvas.CanvasInterface {
 
   findChildBlocks = id => this.blocks.filter(({ parent }) => (parent === id));
 
+  escapeChar = str => ((str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0'));
+
   output = () => {
     const { blocks } = this;
 
@@ -203,7 +205,7 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     }
 
     return {
-      html: this.html(),
+      html: this.escapeChar(this.html()),
       blockarr: blocks.slice(),
       blocks: blocks.map(({ id, parent }) => {
         const { node } = this.findBlockElement(id)!;
