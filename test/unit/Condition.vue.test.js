@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import test from 'ava';
-import Condition from '../../src/Condition.vue';
+import Condition from '../../src/template/Condition.vue';
 
 test('Condition.vue', (t) => {
   const wrapper = shallowMount(Condition);

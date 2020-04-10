@@ -819,6 +819,21 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@braid/vue-formulate-i18n@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/@braid/vue-formulate-i18n/-/vue-formulate-i18n-1.4.0.tgz#e83a21646afaad859939f41117269a7e70480d46"
+  integrity sha512-US/CguORgMlT+fE+m/Cln8s/EkZB43IvTwOh077I7Tk7vLoZhs7G8+ATMd/Hf4ksLhCUIyxtdEpElbUgTTnjzg==
+
+"@braid/vue-formulate@^2.2.7":
+  version "2.2.7"
+  resolved "https://registry.npmjs.org/@braid/vue-formulate/-/vue-formulate-2.2.7.tgz#2245fcbcc8010ab2fb233dab31fc144ff34355fb"
+  integrity sha512-IJZoewhtK2Qfni9GPGXT6DyW2rHCcFKRxADZhwq2d2FhIUfYFtPtoMYeaKYfn5Iiona/Yxk7WVA6Wq836WE93Q==
+  dependencies:
+    "@braid/vue-formulate-i18n" "^1.4.0"
+    is-plain-object "^3.0.0"
+    is-url "^1.2.4"
+    nanoid "^2.1.11"
+
 "@concordance/react@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@concordance/react/-/react-2.0.0.tgz#aef913f27474c53731f4fd79cc2f54897de90fde"
@@ -5894,6 +5909,11 @@ is-typedarray@^1.0.0, is-typedarray@~1.0.0:
   resolved "https://registry.npmjs.org/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
 
+is-url@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.npmjs.org/is-url/-/is-url-1.2.4.tgz#04a4df46d28c4cff3d73d01ff06abeb318a1aa52"
+  integrity sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==
+
 is-whitespace@^0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/is-whitespace/-/is-whitespace-0.3.0.tgz#1639ecb1be036aec69a54cbb401cfbed7114ab7f"
@@ -6902,6 +6922,11 @@ nan@^2.12.1:
   version "2.14.0"
   resolved "https://registry.npmjs.org/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
+
+nanoid@^2.1.11:
+  version "2.1.11"
+  resolved "https://registry.npmjs.org/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
+  integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
 
 nanomatch@^1.2.9:
   version "1.2.13"

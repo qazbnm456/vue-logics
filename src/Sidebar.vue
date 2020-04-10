@@ -2,42 +2,45 @@
 <div>
   <el-tabs type="border-card">
     <el-tab-pane label="Triggers">
-      <trigger>
+      <trigger
+        title="New visitor"
+        desc="Triggers when somebody visits a specified page">
         <template slot="icon">
           <i class="blockico el-icon-user-solid"></i>
         </template>
-        <template slot="title">
-          <div class="blocktitle">New visitor</div>
-        </template>
       </trigger>
-      <trigger>
+      <trigger
+        title="Action is performed"
+        desc="Action is performed and finished">
         <template slot="icon">
           <i class="blockico el-icon-s-promotion"></i>
-        </template>
-        <template slot="title">
-          <div class="blocktitle">Action is performed</div>
         </template>
       </trigger>
     </el-tab-pane>
     <el-tab-pane label="Actions">
-      <action>
+      <action
+        title="Clone the webpage"
+        desc="Clone the webpage and respond">
         <template slot="icon">
           <i class="blockico el-icon-document-add"></i>
-        </template>
-        <template slot="title">
-          <div class="blocktitle">Clone the webpage</div>
         </template>
       </action>
     </el-tab-pane>
     <el-tab-pane label="Conditions">
-      <action>
+      <condition
+        title="If it's true"
+        desc="The truth condition">
         <template slot="icon">
           <i class="blockico el-icon-check"></i>
         </template>
-        <template slot="title">
-          <div class="blocktitle">If it's true</div>
+      </condition>
+      <condition
+        title="If it's false"
+        desc="The falsy condition">
+        <template slot="icon">
+          <i class="blockico el-icon-close"></i>
         </template>
-      </action>
+      </condition>
     </el-tab-pane>
   </el-tabs>
 </div>
@@ -48,9 +51,9 @@ import { Component, Vue } from 'vue-property-decorator';
 
 import { Tabs, TabPane } from 'element-ui';
 
-import Action from './Action.vue';
-import Condition from './Condition.vue';
-import Trigger from './Trigger.vue';
+import Action from './template/Action.vue';
+import Condition from './template/Condition.vue';
+import Trigger from './template/Trigger.vue';
 
 @Component({
   components: {

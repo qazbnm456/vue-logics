@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import test from 'ava';
-import Trigger from '../../src/Trigger.vue';
+import Trigger from '../../src/template/Trigger.vue';
 
 test('Trigger.vue', (t) => {
   const wrapper = shallowMount(Trigger);

@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import test from 'ava';
-import Action from '../../src/Action.vue';
+import Action from '../../src/template/Action.vue';
 
 test('Action.vue', (t) => {
   const wrapper = shallowMount(Action);

@@ -19,6 +19,7 @@ export default {
     exports: 'default',
     format: 'iife',
     globals: {
+      '@braid/vue-formulate': 'VueFormulate',
       'element-ui': 'ElementUI',
       'is-plain-object': 'isPlainObject',
       'vue': 'Vue',
@@ -36,7 +37,7 @@ export default {
         'element-ui': ['Col', 'Row', 'Tabs', 'TabPane']
       }
     }),
-    internal(['element-ui', 'is-plain-object', 'vue', 'vue-class-component']),
+    internal(['@braid/vue-formulate', 'element-ui', 'is-plain-object', 'vue', 'vue-class-component']),
     css({ output: 'theme/default/logics.css' }),
     vue({
       css: false,

@@ -10,11 +10,17 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import VueFormulate from '@braid/vue-formulate';
 
 import Flowy from './engine/index';
 import * as Logics from '../src/types/vue-logics';
 
+import Action from './Action.vue';
+import Condition from './Condition.vue';
 import Sidebar from './Sidebar.vue';
+import Trigger from './Trigger.vue';
+
+Vue.use(VueFormulate);
 
 @Component({
   name: 'vue-logics-view',
@@ -23,12 +29,50 @@ import Sidebar from './Sidebar.vue';
   },
 })
 export default class VueLogics extends Vue {
-  @Prop({ default: '740px' }) readonly width!: string
-  @Prop({ default: '400px' }) readonly height!: string
+  @Prop({ default: '740px' }) readonly width!: string;
+  @Prop({ default: '400px' }) readonly height!: string;
 
   flowy: Logics.Flowy.FlowyElementInterface;
 
-  onSnap(block, first, parent) {
+  onSnap(block: HTMLDivElement, first: boolean, parent) {
+    const type = block.getAttribute('blockelemtype');
+    const blockin = block.querySelector('.blockin');
+    let instance = null;
+
+    blockin.parentNode.removeChild(blockin);
+
+    if (type === 'action') {
+      const ActionClass = Vue.extend(Action);
+      instance = new ActionClass({
+        propsData: {
+          title: 'Clone the webpage',
+          desc: 'Clone the webpage and respond',
+        },
+      });
+      instance.$slots.icon = [instance.$createElement('i', { attrs: { class: 'blockico el-icon-document-add' } })];
+    } else if (type === 'condition') {
+      const ConditionClass = Vue.extend(Condition);
+      instance = new ConditionClass({
+        propsData: {
+          title: 'If it\'s true',
+          desc: 'The truth condition',
+        },
+      });
+      instance.$slots.icon = [instance.$createElement('i', { attrs: { class: 'blockico el-icon-check' } })];
+    } else if (type === 'trigger') {
+      const TriggerClass = Vue.extend(Trigger);
+      instance = new TriggerClass({
+        propsData: {
+          title: 'New visitor',
+          desc: 'Triggers when somebody visits a specified page',
+        },
+      });
+      instance.$slots.icon = [instance.$createElement('i', { attrs: { class: 'blockico el-icon-user-solid' } })];
+    }
+
+    instance.$mount();
+    block.appendChild(instance.$el);
+
     return true;
   }
 

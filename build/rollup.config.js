@@ -17,12 +17,14 @@ export default {
     name: 'VueLogics',
     exports: 'default',
     globals: {
+      '@braid/vue-formulate': 'VueFormulate',
       'element-ui': 'ElementUI',
       'is-plain-object': 'isPlainObject',
       'vue': 'Vue',
     }
   },
   external: [
+    '@braid/vue-formulate',
     'element-ui',
     'vue',
   ],

@@ -74,7 +74,11 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     return this.node.innerHTML;
   }
 
-  appendHtml = html => (this.node.innerHTML += html);
+  appendHtml = (html) => {
+    const div = this.document.createElement('div');
+    div.innerHTML = html;
+    this.node.appendChild(div.children[0] as HTMLDivElement);
+  }
 
   appendChild = (...children) => {
     children.forEach(child => this.node.appendChild(child));
