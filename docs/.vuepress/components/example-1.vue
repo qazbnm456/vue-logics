@@ -14,6 +14,9 @@ export default class Example1 extends Vue {
   onClick() {
     console.log((this as any).$logics.output());
   }
+  mounted() {
+    (window as any).logics = (this as any).$logics;
+  }
 }
 </script>
 <style scoped>

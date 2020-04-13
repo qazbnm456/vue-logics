@@ -1,5 +1,5 @@
 <template>
-<div class="blockin" @click="drawer = true">
+<div class="blockin" @mousedown="onMouseDown" @mousemove="onMouseMove" @mouseup="onMouseUp">
   <slot name="icon">
     <i class="blockico el-icon-menu"></i>
   </slot>
@@ -81,6 +81,33 @@ export default class Trigger extends Vue {
   drawer: boolean = false;
   direction: string = 'rtl';
   formValues: Object = {};
+  isMoving: boolean = false;
+
+  findDragging(el: HTMLElement) {
+    if (el.id === 'logics-canvas') {
+      return false;
+    }
+    console.log(el.classList);
+    if (el.classList.contains('dragging')) {
+      return true;
+    }
+    return this.findDragging(el.parentElement);
+  }
+  onMouseDown() {
+    this.isMoving = false;
+  }
+  onMouseMove() {
+    this.isMoving = true;
+  }
+  onMouseUp(event) {
+    if (this.isMoving) { // dragging
+      // nothing to do
+    } else {
+      this.drawer = true;
+    }
+
+    this.isMoving = false;
+  }
 }
 </script>
 
