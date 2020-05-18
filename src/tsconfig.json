@@ -26,8 +26,11 @@
     ]
   },
   "include": [
-    "**/*.ts",
-    "**/*.vue"
+    "./engine",
+    "./template",
+    "./types",
+    "./*.ts",
+    "./*.vue"
   ],
   "exclude": [
     "../node_modules"
