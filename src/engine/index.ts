@@ -1,6 +1,5 @@
-/* global window, document */
-
 import Canvas from './Canvas';
+// eslint-disable-next-line import/no-unresolved
 import * as Logics from '../types/vue-logics';
 
 let loaded = false;
@@ -41,86 +40,6 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
       currentOffsetLeft: 0,
       previousOffsetLeft: 0,
     });
-    this.import = ({ html, blockarr }) => {
-      canvas.import({ html, blockarr });
-      rearrangeMe();
-    }
-    this.output = canvas.output;
-    this.deleteBlocks = canvas.reset;
-
-    const handleCoordinates = (event: MouseEvent | TouchEvent) => {
-      const { clientX, clientY } = (event as TouchEvent).targetTouches
-        ? (event as TouchEvent).targetTouches[0]
-        : (event as MouseEvent);
-      return canvas.setState({
-        mouseX: clientX,
-        mouseY: clientY,
-      });
-    };
-
-    function hasParentClass(node, classname) {
-      if (node.className && node.className.split(' ').indexOf(classname) >= 0) {
-        return true;
-      }
-
-      return node.parentNode && hasParentClass(node.parentNode, classname);
-    }
-
-    function touchblock(event) {
-      canvas.toggleDraggingBlock(false);
-
-      if (!hasParentClass(event.target, 'block')) {
-        return;
-      }
-
-      const theblock = event.target.closest('.block');
-
-      const { mouseX, mouseY } = handleCoordinates(event);
-
-      if (
-        event.type !== 'mouseup'
-        && hasParentClass(event.target, 'block')
-        && event.which !== 3
-        && !canvas.isDragging
-        && !canvas.isRearranging
-      ) {
-        canvas.toggleDraggingBlock(true);
-        canvas.registerDragger(theblock);
-
-        const draggedElement = canvas.draggedElement!;
-
-        if (mouseX && mouseY) {
-          canvas.setState({
-            dragX: mouseX - draggedElement.position().left,
-            dragY: mouseY - draggedElement.position().top,
-          });
-        }
-      }
-    }
-
-    function beginDrag(event) {
-      handleCoordinates(event);
-
-      const { target, which } = event;
-      const grabbedNode = (target! as HTMLElement).closest('.create-flowy') as HTMLDivElement;
-
-      if (which === 3 || grabbedNode === null) {
-        return;
-      }
-
-      canvas.grab(grabbedNode);
-      canvas.toggleDragging(true);
-
-      if (self.onGrab) {
-        self.onGrab(grabbedNode);
-      }
-    }
-
-    document.addEventListener('mousedown', touchblock, false);
-    document.addEventListener('touchstart', touchblock, false);
-
-    document.addEventListener('mousedown', beginDrag);
-    document.addEventListener('touchstart', beginDrag);
 
     function rearrangeMe() {
       const parents = canvas.blocks.map(({ parent }) => (parent));
@@ -163,15 +82,13 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
           if (block.childWidth > block.width) {
             blockElement.styles({
               left: `${
-                parentBlock.x - totalWidth / 2
-                + totalRemove
-                + block.childWidth / 2 - block.width / 2 - left}px`,
+                parentBlock.x - totalWidth / 2 + totalRemove +
+                block.childWidth / 2 - block.width / 2 - left}px`,
             });
           } else {
             blockElement.styles({
               left: `${
-                parentBlock.x - totalWidth / 2
-                + totalRemove - left}px`,
+                parentBlock.x - totalWidth / 2 + totalRemove - left}px`,
             });
           }
 
@@ -227,6 +144,87 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
       }
     }
 
+    this.import = ({ html, blockarr }) => {
+      canvas.import({ html, blockarr });
+      rearrangeMe();
+    };
+    this.output = canvas.output;
+    this.deleteBlocks = canvas.reset;
+
+    const handleCoordinates = (event: MouseEvent | TouchEvent) => {
+      const { clientX, clientY } = (event as TouchEvent).targetTouches
+        ? (event as TouchEvent).targetTouches[0]
+        : (event as MouseEvent);
+      return canvas.setState({
+        mouseX: clientX,
+        mouseY: clientY,
+      });
+    };
+
+    function hasParentClass(node, classname) {
+      if (node.className && node.className.split(' ').indexOf(classname) >= 0) {
+        return true;
+      }
+
+      return node.parentNode && hasParentClass(node.parentNode, classname);
+    }
+
+    function touchblock(event) {
+      canvas.toggleDraggingBlock(false);
+
+      if (!hasParentClass(event.target, 'block')) {
+        return;
+      }
+
+      const theblock = event.target.closest('.block');
+
+      const { mouseX, mouseY } = handleCoordinates(event);
+
+      if (
+        event.type !== 'mouseup' &&
+        hasParentClass(event.target, 'block') &&
+        event.which !== 3 &&
+        !canvas.isDragging &&
+        !canvas.isRearranging
+      ) {
+        canvas.toggleDraggingBlock(true);
+        canvas.registerDragger(theblock);
+
+        const draggedElement = canvas.draggedElement!;
+
+        if (mouseX && mouseY) {
+          canvas.setState({
+            dragX: mouseX - draggedElement.position().left,
+            dragY: mouseY - draggedElement.position().top,
+          });
+        }
+      }
+    }
+
+    function beginDrag(event) {
+      handleCoordinates(event);
+
+      const { target, which } = event;
+      const grabbedNode = (target! as HTMLElement).closest('.create-flowy') as HTMLDivElement;
+
+      if (which === 3 || grabbedNode === null) {
+        return;
+      }
+
+      canvas.grab(grabbedNode);
+      canvas.toggleDragging(true);
+
+      if (self.onGrab) {
+        self.onGrab(grabbedNode);
+      }
+    }
+
+    document.addEventListener('mousedown', touchblock, false);
+    document.addEventListener('touchstart', touchblock, false);
+
+    document.addEventListener('mousedown', beginDrag);
+    document.addEventListener('touchstart', beginDrag);
+
     function checkOffset() {
       const widths = canvas.blocks.map(({ width }) => width);
       const currentOffsetLeft = Math.min(
@@ -261,10 +259,10 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
         canvas.blocks.forEach((block) => {
           const blockElement = canvas.findBlockElement(block.id)!;
 
-          block.x = blockElement.position().left
-            + (canvas.position().left + canvas.position().scrollLeft)
-            - canvas.draggedElement!.position().width / 2
-            - 40;
+          block.x = blockElement.position().left +
+            (canvas.position().left + canvas.position().scrollLeft) -
+            canvas.draggedElement!.position().width / 2 -
+            40;
         });
 
         canvas.setState({ previousOffsetLeft: currentOffsetLeft });
@@ -357,11 +355,8 @@ class Flowy implements Logics.Flowy.FlowyElementInterface {
       const arrowX = x - block.x + 20;
       // TODO: should this be using the first match?
       const arrowY = parseFloat(`${
-        y
-        - height / 2
-        - (canvas.blocks.find(({ parent }) => (parent === block.id))!.y
-          + canvas.blocks.find(({ parent }) => (parent === block.id))!.height / 2)
-        + scrollTop}`);
+        y - height / 2 - (canvas.blocks.find(({ parent }) => (parent === block.id))!.y +
+          canvas.blocks.find(({ parent }) => (parent === block.id))!.height / 2) + scrollTop}`);
 
       if (arrowX < 0) {
         canvas.appendHtml(`

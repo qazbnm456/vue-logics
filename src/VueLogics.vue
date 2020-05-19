@@ -1,11 +1,24 @@
 <template>
-<div class="vue-logics" :style="{ width: this.width }">
-  <sidebar id="logics-sidebar" ref="sidebar"></sidebar>
-  <div id="logics-container" :style="{ height: this.height }">
-    <div id="logics-canvas" ref="canvas" :style="{ height: this.height }"></div>
-    <div id="logics-temp-area"></div>
+  <div
+    class="vue-logics"
+    :style="{ width: width }"
+  >
+    <sidebar
+      id="logics-sidebar"
+      ref="sidebar"
+    />
+    <div
+      id="logics-container"
+      :style="{ height: height }"
+    >
+      <div
+        id="logics-canvas"
+        ref="canvas"
+        :style="{ height: height }"
+      />
+      <div id="logics-temp-area" />
+    </div>
   </div>
-</div>
 </template>
 
 <script lang="ts">
@@ -13,6 +26,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import VueFormulate from '@braid/vue-formulate';
 
 import Flowy from './engine/index';
+// eslint-disable-next-line import/no-unresolved
 import * as Logics from '../src/types/vue-logics';
 
 import Action from './Action.vue';
@@ -34,6 +48,7 @@ export default class VueLogics extends Vue {
 
   flowy: Logics.Flowy.FlowyElementInterface;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onSnap(block: HTMLDivElement, first: boolean, parent) {
     const type = block.getAttribute('blockelemtype');
     const blockin = block.querySelector('.blockin');
@@ -49,7 +64,8 @@ export default class VueLogics extends Vue {
           desc: 'Clone the webpage and respond',
         },
       });
-      instance.$slots.icon = [instance.$createElement('i', { attrs: { class: 'blockico el-icon-document-add' } })];
+      instance.$slots.icon =
+        [instance.$createElement('i', { attrs: { class: 'blockico el-icon-document-add' } })];
     } else if (type === 'condition') {
       const ConditionClass = Vue.extend(Condition);
       instance = new ConditionClass({
@@ -58,7 +74,8 @@ export default class VueLogics extends Vue {
           desc: 'The truth condition',
         },
       });
-      instance.$slots.icon = [instance.$createElement('i', { attrs: { class: 'blockico el-icon-check' } })];
+      instance.$slots.icon =
+        [instance.$createElement('i', { attrs: { class: 'blockico el-icon-check' } })];
     } else if (type === 'trigger') {
       const TriggerClass = Vue.extend(Trigger);
       instance = new TriggerClass({
@@ -67,7 +84,8 @@ export default class VueLogics extends Vue {
           desc: 'Triggers when somebody visits a specified page',
         },
       });
-      instance.$slots.icon = [instance.$createElement('i', { attrs: { class: 'blockico el-icon-user-solid' } })];
+      instance.$slots.icon =
+        [instance.$createElement('i', { attrs: { class: 'blockico el-icon-user-solid' } })];
     }
 
     instance.$mount();

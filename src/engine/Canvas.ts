@@ -1,5 +1,6 @@
 import BlockElement from './BlockElement';
 import Block from './Block';
+// eslint-disable-next-line import/no-unresolved
 import * as Logics from '../types/vue-logics';
 
 class Canvas implements Logics.Canvas.CanvasInterface {
@@ -92,12 +93,12 @@ class Canvas implements Logics.Canvas.CanvasInterface {
   }
 
   pageX = element => ((element.id !== 'logics-sidebar')
-  ? element.offsetLeft + this.pageX(element.offsetParent as HTMLElement)
-  : element.offsetLeft);
+    ? element.offsetLeft + this.pageX(element.offsetParent as HTMLElement)
+    : element.offsetLeft);
 
   pageY = element => ((element.id !== 'logics-sidebar')
-  ? element.offsetTop + this.pageY(element.offsetParent as HTMLElement)
-  : element.offsetTop);
+    ? element.offsetTop + this.pageY(element.offsetParent as HTMLElement)
+    : element.offsetTop);
 
   grab = (grabbedNode: HTMLDivElement) => {
     const { mouseX, mouseY } = this.state;
@@ -199,7 +200,7 @@ class Canvas implements Logics.Canvas.CanvasInterface {
 
   findChildBlocks = id => this.blocks.filter(({ parent }) => (parent === id));
 
-  escapeChar = str => ((str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0'));
+  escapeChar = str => ((`${str}`).replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0'));
 
   output = () => {
     const { blocks } = this;
@@ -323,10 +324,10 @@ class Canvas implements Logics.Canvas.CanvasInterface {
     const zoneY = top + scrollTop;
 
     return (
-      zoneX >= x - width / 2 - this.spacingX
-      && zoneX <= x + width / 2 + this.spacingX
-      && zoneY >= y - height / 2
-      && zoneY <= y + height
+      zoneX >= x - width / 2 - this.spacingX &&
+      zoneX <= x + width / 2 + this.spacingX &&
+      zoneY >= y - height / 2 &&
+      zoneY <= y + height
     );
   }
 
@@ -383,10 +384,10 @@ class Canvas implements Logics.Canvas.CanvasInterface {
       this.draggedElement!.styles({
         left: ((mouseX < dragX)
           ? '0px'
-          :`${mouseX - dragX}px`),
+          : `${mouseX - dragX}px`),
         top: ((mouseY < dragY)
           ? '0px'
-          :`${mouseY - dragY}px`),
+          : `${mouseY - dragY}px`),
       });
     }
   }
@@ -399,10 +400,10 @@ class Canvas implements Logics.Canvas.CanvasInterface {
       this.draggedElement!.styles({
         left: ((mouseX - dragX - left + scrollLeft < 0)
           ? '0px'
-          :`${mouseX - dragX - left + scrollLeft}px`),
+          : `${mouseX - dragX - left + scrollLeft}px`),
         top: ((mouseY - dragY - top + scrollTop < 0)
           ? '0px'
-          :`${mouseY - dragY - top + scrollTop}px`),
+          : `${mouseY - dragY - top + scrollTop}px`),
       });
     }
   }

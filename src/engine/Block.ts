@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import * as Logics from '../types/vue-logics';
 
 class Block implements Logics.Block.BlockInterface {

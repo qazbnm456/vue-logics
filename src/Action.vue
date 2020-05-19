@@ -1,66 +1,81 @@
 <template>
-<div class="blockin" @click="drawer = true">
-  <slot name="icon">
-    <i class="blockico el-icon-menu"></i>
-  </slot>
-  <div class="blocktext">
-    <div class="blocktitle">{{ title }}</div>
-    <div class="blockdesc">{{ desc }}</div>
+  <div
+    class="blockin"
+    @click="drawer = true"
+  >
+    <slot name="icon">
+      <i class="blockico el-icon-menu" />
+    </slot>
+    <div class="blocktext">
+      <div class="blocktitle">
+        {{ title }}
+      </div>
+      <div class="blockdesc">
+        {{ desc }}
+      </div>
+    </div>
+    <el-drawer
+      :visible.sync="drawer"
+      :direction="direction"
+      :append-to-body="true"
+      :show-close="false"
+    >
+      <template #title>
+        <h2>Properties</h2>
+      </template>
+      <template>
+        <FormulateForm
+          v-model="formValues"
+          class="property-form"
+        >
+          <p>
+            Action provides you a set of actions to initiate.
+          </p>
+          <FormulateInput
+            v-model="title"
+            name="title"
+            type="text"
+            label="Action's title"
+            placeholder="Title"
+            validation="required"
+          />
+          <FormulateInput
+            v-model="desc"
+            name="desc"
+            type="text"
+            label="Action's description"
+            placeholder="Description"
+            validation="required"
+          />
+          <div class="double-wide">
+            <FormulateInput
+              name="password"
+              type="password"
+              label="Password"
+              placeholder="Your password"
+              validation="required"
+            />
+            <FormulateInput
+              name="password_confirm"
+              type="password"
+              label="Confirm your password"
+              placeholder="Confirm password"
+              validation="required|confirm"
+              validation-name="Confirmation"
+            />
+          </div>
+          <FormulateInput
+            type="submit"
+            label="Register"
+          />
+          <pre
+            class="code"
+            v-text="formValues"
+          />
+        </FormulateForm>
+      </template>
+    </el-drawer>
   </div>
-  <el-drawer
-    :visible.sync="drawer"
-    :direction="direction"
-    :append-to-body="true"
-    :show-close="false">
-    <template slot="title">
-      <h2>Properties</h2>
-    </template>
-    <template>
-      <FormulateForm
-        class="property-form"
-        v-model="formValues">
-        <p>
-          Action provides you a set of actions to initiate.
-        </p>
-        <FormulateInput
-          name="title"
-          type="text"
-          label="Action's title"
-          placeholder="Title"
-          v-model="title"
-          validation="required" />
-        <FormulateInput
-          name="desc"
-          type="text"
-          label="Action's description"
-          placeholder="Description"
-          v-model="desc"
-          validation="required" />
-        <div class="double-wide">
-          <FormulateInput
-            name="password"
-            type="password"
-            label="Password"
-            placeholder="Your password"
-            validation="required" />
-          <FormulateInput
-            name="password_confirm"
-            type="password"
-            label="Confirm your password"
-            placeholder="Confirm password"
-            validation="required|confirm"
-            validation-name="Confirmation" />
-        </div>
-        <FormulateInput
-          type="submit"
-          label="Register" />
-        <pre
-          class="code"
-          v-text="formValues" />
-      </FormulateForm>
-    </template>
-  </el-drawer>
-</div>
 </template>
 
 <script lang="ts">
@@ -78,9 +93,9 @@ export default class Action extends Vue {
   @Prop({ default: 'Action\'s title' }) readonly title!: string;
   @Prop({ default: 'Action\'s description' }) readonly desc!: string;
 
-  drawer: boolean = false;
-  direction: string = 'rtl';
-  formValues: Object = {};
+  drawer = false;
+  direction = 'rtl';
+  formValues: Record<string, any> = {};
 }
 </script>
 

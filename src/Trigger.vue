@@ -1,66 +1,83 @@
 <template>
-<div class="blockin" @mousedown="onMouseDown" @mousemove="onMouseMove" @mouseup="onMouseUp">
-  <slot name="icon">
-    <i class="blockico el-icon-menu"></i>
-  </slot>
-  <div class="blocktext">
-    <div class="blocktitle">{{ title }}</div>
-    <div class="blockdesc">{{ desc }}</div>
+  <div
+    class="blockin"
+    @mousedown="onMouseDown"
+    @mousemove="onMouseMove"
+    @mouseup="onMouseUp"
+  >
+    <slot name="icon">
+      <i class="blockico el-icon-menu" />
+    </slot>
+    <div class="blocktext">
+      <div class="blocktitle">
+        {{ title }}
+      </div>
+      <div class="blockdesc">
+        {{ desc }}
+      </div>
+    </div>
+    <el-drawer
+      :visible.sync="drawer"
+      :direction="direction"
+      :append-to-body="true"
+      :show-close="false"
+    >
+      <template #title>
+        <h2>Properties</h2>
+      </template>
+      <template>
+        <FormulateForm
+          v-model="formValues"
+          class="property-form"
+        >
+          <p>
+            Trigger can be used to define a timing and intercept certain events.
+          </p>
+          <FormulateInput
+            v-model="title"
+            name="title"
+            type="text"
+            label="Trigger's title"
+            placeholder="Title"
+            validation="required"
+          />
+          <FormulateInput
+            v-model="desc"
+            name="desc"
+            type="text"
+            label="Trigger's description"
+            placeholder="Description"
+            validation="required"
+          />
+          <div class="double-wide">
+            <FormulateInput
+              name="password"
+              type="password"
+              label="Password"
+              placeholder="Your password"
+              validation="required"
+            />
+            <FormulateInput
+              name="password_confirm"
+              type="password"
+              label="Confirm your password"
+              placeholder="Confirm password"
+              validation="required|confirm"
+              validation-name="Confirmation"
+            />
+          </div>
+          <FormulateInput
+            type="submit"
+            label="Register"
+          />
+          <pre
+            class="code"
+            v-text="formValues"
+          />
+        </FormulateForm>
+      </template>
+    </el-drawer>
   </div>
-  <el-drawer
-    :visible.sync="drawer"
-    :direction="direction"
-    :append-to-body="true"
-    :show-close="false">
-    <template slot="title">
-      <h2>Properties</h2>
-    </template>
-    <template>
-      <FormulateForm
-        class="property-form"
-        v-model="formValues">
-        <p>
-          Trigger can be used to define a timing and intercept certain events.
-        </p>
-        <FormulateInput
-          name="title"
-          type="text"
-          label="Trigger's title"
-          placeholder="Title"
-          v-model="title"
-          validation="required" />
-        <FormulateInput
-          name="desc"
-          type="text"
-          label="Trigger's description"
-          placeholder="Description"
-          v-model="desc"
-          validation="required" />
-        <div class="double-wide">
-          <FormulateInput
-            name="password"
-            type="password"
-            label="Password"
-            placeholder="Your password"
-            validation="required" />
-          <FormulateInput
-            name="password_confirm"
-            type="password"
-            label="Confirm your password"
-            placeholder="Confirm password"
-            validation="required|confirm"
-            validation-name="Confirmation" />
-        </div>
-        <FormulateInput
-          type="submit"
-          label="Register" />
-        <pre
-          class="code"
-          v-text="formValues" />
-      </FormulateForm>
-    </template>
-  </el-drawer>
-</div>
 </template>
 
 <script lang="ts">
@@ -78,19 +95,19 @@ export default class Trigger extends Vue {
   @Prop({ default: 'Trigger\'s title' }) readonly title!: string;
   @Prop({ default: 'Trigger\'s description' }) readonly desc!: string;
 
-  drawer: boolean = false;
-  direction: string = 'rtl';
-  formValues: Object = {};
-  isMoving: boolean = false;
+  drawer = false;
+  direction = 'rtl';
+  formValues: Record<string, any> = {};
+  isMoving = false;
 
   findDragging(el: HTMLElement) {
     if (el.id === 'logics-canvas') {
       return false;
     }
-    console.log(el.classList);
     if (el.classList.contains('dragging')) {
       return true;
     }
+
     return this.findDragging(el.parentElement);
   }
   onMouseDown() {
@@ -99,7 +116,7 @@ export default class Trigger extends Vue {
   onMouseMove() {
     this.isMoving = true;
   }
-  onMouseUp(event) {
+  onMouseUp() {
     if (this.isMoving) { // dragging
       // nothing to do
     } else {

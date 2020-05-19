@@ -1,19 +1,26 @@
 <template>
-<el-row class="handle">
-  <el-col>
-    <div class="blockelem create-flowy" blockelemtype="action">
-      <div class="blockin">
-        <slot name="icon">
-          <i class="blockico el-icon-menu"></i>
-        </slot>
-        <div class="blocktext">
-          <div class="blocktitle">{{ title }}</div>
-          <div class="blockdesc">{{ desc }}</div>
+  <el-row class="handle">
+    <el-col>
+      <div
+        class="blockelem create-flowy"
+        blockelemtype="action"
+      >
+        <div class="blockin">
+          <slot name="icon">
+            <i class="blockico el-icon-menu" />
+          </slot>
+          <div class="blocktext">
+            <div class="blocktitle">
+              {{ title }}
+            </div>
+            <div class="blockdesc">
+              {{ desc }}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </el-col>
-</el-row>
+    </el-col>
+  </el-row>
 </template>
 
 <script lang="ts">

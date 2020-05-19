@@ -1,4 +1,5 @@
 import ArrowElement from './ArrowElement';
+// eslint-disable-next-line import/no-unresolved
 import * as Logics from '../types/vue-logics';
 
 class BlockElement implements Logics.BlockElement.BlockElementInterface {
