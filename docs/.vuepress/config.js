@@ -44,5 +44,5 @@ module.exports = {
     search: true,
   },
   dest: 'public',
-  base: '/vue-logics/',
+  base: '/',
 };
