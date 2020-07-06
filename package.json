@@ -18,7 +18,9 @@
     "check-types": "yarn run tsc -p src/tsconfig.json",
     "test": "yarn run check-types && yarn run nyc ava",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "deploy": "yarn docs:build && echo 'vue-logics.boik.com.tw' > public/CNAME",
+    "pub": "git subtree push --prefix=dist origin gh-pages"
   },
   "author": {
     "name": "Boik Su",
